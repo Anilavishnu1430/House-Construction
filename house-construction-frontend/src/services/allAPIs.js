@@ -35,3 +35,8 @@ export const getAProjectAPI = async(id,reqHeader)=>{
 export const addQuoteAPI = async(reqBody,reqHeader)=>{
     return await commonAPI('POST',`${serverURL}/api/addQuote`,reqBody,reqHeader)
 }
+
+//USER PROFILE UPDATION - endpoints define
+export const updateUserProfileAPI = async(id,reqBody,reqHeader)=>{
+    return await commonAPI('PUT',`${serverURL}/api/updateProfile/${id}`,reqBody,reqHeader)
+}

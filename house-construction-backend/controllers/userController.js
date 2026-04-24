@@ -67,3 +67,21 @@ exports.googleLoginUser=async(req,res)=>{
         res.status(500).json({message :"Server err",err})
     }
 }
+
+//User Profile Updation 
+exports.updateUserProfile=async(req,res)=>{
+    console.log("Inside Update Profile");
+    console.log(req.params);
+    const {id} = req.params
+    console.log(id);
+    const email = req.payload
+    const { username, password , bio } = req.body
+    const profile = req.file? req.file.filename : req.body.profile
+    try{
+        const updateProfile = await users.findByIdAndUpdate({_id:id},{username,password,bio,profile},{ new: true})
+        res.status(200).json({message:"profile updated successfully...",updateProfile})
+    }
+    catch(err){
+        res.status(500).json({message:"Server err",err})
+    }
+}
