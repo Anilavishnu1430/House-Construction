@@ -27,7 +27,11 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: "user"
-    }
+    },
+    phone: {
+        type: Number,
+        default: ""
+    },
 })
 
 module.exports = mongoose.model("User", userSchema)

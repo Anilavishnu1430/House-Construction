@@ -1,15 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminHeader from '../components/AdminHeader'
 import Footer from '../../components/Footer'
 import { Card, Label, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Textarea } from 'flowbite-react'
 import { Table, Button } from "flowbite-react";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
 import { useState } from "react";
-
+import { viewAllQuoteAPI } from '../../services/allAPIs';
 
 
 function AdminHome() {
     const [openModal, setOpenModal] = useState(false);
+
+    const [token, setToken] = React.useState("")
+    console.log(token);
+    const [quote, setQuote] = React.useState([])
+
+    useEffect(() => {
+        setToken(sessionStorage.getItem("token"))
+        viewQuote()
+    }, [token])
+
+    const viewQuote = async () => {
+        try {
+            const reqHeader = {
+                Authorization: `Bearer ${token}`
+            }
+            const response = await viewAllQuoteAPI(reqHeader)
+            console.log(response);
+            setQuote(response.data.viewQuote)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <div>
             <AdminHeader />
@@ -46,35 +69,27 @@ function AdminHome() {
                         </TableHead>
 
                         <TableBody className="divide-y">
-                            <TableRow>
-                                <TableCell className='text-[#660000]'>Rajesh Kumar</TableCell>
-                                <TableCell className='text-[#660000]'>9876543210</TableCell>
-                                <TableCell className='text-[#660000]'>India</TableCell>
-                                <TableCell className='text-[#660000]'>Chennai</TableCell>
-                                <TableCell className='text-[#660000]'>rajesh@example.com</TableCell>
-                                <TableCell className='text-[#660000]'>Construction</TableCell>
-                                <TableCell className='text-[#660000]'>Need a quote for new house build</TableCell>
+                            {
+                                quote.length>0?
+                                quote.map(item=>(
+                                    <TableRow>
+                                <TableCell className='text-[#660000]'>{item.name}</TableCell>
+                                <TableCell className='text-[#660000]'>{item.mobile}</TableCell>
+                                <TableCell className='text-[#660000]'>{item.location}</TableCell>
+                                <TableCell className='text-[#660000]'>{item.city}</TableCell>
+                                <TableCell className='text-[#660000]'>{item.email}</TableCell>
+                                <TableCell className='text-[#660000]'>{item.service}</TableCell>
+                                <TableCell className='text-[#660000]'>{item.message}</TableCell>
                                 <TableCell>
                                     <Button onClick={() => setOpenModal(true)} className="bg-[#660000] hover:bg-[#5E445C] text-white text-sm">
                                         Replay
                                     </Button>
                                 </TableCell>
                             </TableRow>
+                                ))
+                                :"No quote found"
+                            }
 
-                            <TableRow>
-                                <TableCell className='text-[#660000]'>Anita Sharma</TableCell>
-                                <TableCell className='text-[#660000]'>9123456789</TableCell>
-                                <TableCell className='text-[#660000]'>Outside India</TableCell>
-                                <TableCell className='text-[#660000]'>Dubai</TableCell>
-                                <TableCell className='text-[#660000]'>anita@example.com</TableCell>
-                                <TableCell className='text-[#660000]'>Renovation</TableCell>
-                                <TableCell className='text-[#660000]'>Kitchen remodeling request</TableCell>
-                                <TableCell>
-                                    <Button onClick={() => setOpenModal(true)} className="bg-[#660000] hover:bg-[#5E445C] text-white text-sm">
-                                        Replay
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
                         </TableBody>
                     </Table>
                 </Card>

@@ -40,3 +40,8 @@ export const addQuoteAPI = async(reqBody,reqHeader)=>{
 export const updateUserProfileAPI = async(id,reqBody,reqHeader)=>{
     return await commonAPI('PUT',`${serverURL}/api/updateProfile/${id}`,reqBody,reqHeader)
 }
+
+//View Quote - /api/viewQuote
+export const viewAllQuoteAPI = async(reqHeader)=>{
+    return await commonAPI('GET',`${serverURL}/api/viewQuote`,"",reqHeader)
+}

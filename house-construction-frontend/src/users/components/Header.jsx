@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {Avatar,Dropdown,DropdownDivider,DropdownHeader,DropdownItem,Navbar,NavbarToggle} from "flowbite-react";
 import { Link } from 'react-router-dom';
 import Houselogo from "../../assets/Houselogo.png";
+import { serverURL } from '../../services/serverURL';
 
 
 function Header() {
@@ -60,9 +61,20 @@ function Header() {
             arrowIcon={false}
             inline
             label={
+              // <Avatar
+              //   alt="User settings"
+              //   img={userDetails.profile}
+              //   rounded
+              // />
               <Avatar
                 alt="User settings"
-                img={userDetails.profile}
+                img={
+                  userDetails.profile
+                    ? userDetails.profile.startsWith("http")
+                      ? userDetails.profile
+                      : `${serverURL}/uploads/${userDetails.profile}`
+                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtRs_rWILOMx5-v3aXwJu7LWUhnPceiKvvDg&s"
+                }
                 rounded
               />
             }
@@ -72,8 +84,7 @@ function Header() {
               <span className="block truncate text-sm font-medium">{userDetails.email}</span>
             </DropdownHeader>
             <Link to={"/profile"}><DropdownItem>Profile</DropdownItem></Link>
-            <DropdownItem>Settings</DropdownItem>
-            <DropdownItem>Earnings</DropdownItem>
+            
             <DropdownDivider />
             <Link to={"/login"}><DropdownItem>Sign out</DropdownItem></Link>
           </Dropdown>

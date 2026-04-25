@@ -75,10 +75,10 @@ exports.updateUserProfile=async(req,res)=>{
     const {id} = req.params
     console.log(id);
     const email = req.payload
-    const { username, password , bio } = req.body
+    const { username, password , bio , phone } = req.body
     const profile = req.file? req.file.filename : req.body.profile
     try{
-        const updateProfile = await users.findByIdAndUpdate({_id:id},{username,password,bio,profile},{ new: true})
+        const updateProfile = await users.findByIdAndUpdate({_id:id},{username,password,bio,profile,phone},{ new: true})
         res.status(200).json({message:"profile updated successfully...",updateProfile})
     }
     catch(err){

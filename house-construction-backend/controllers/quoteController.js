@@ -18,3 +18,15 @@ exports.addQuote=async(req,res)=>{
             res.status(500).json({ message: "Server error", err });
         }
 }
+
+//View Notification
+exports.viewQuote=async(req,res)=>{
+    console.log("Inside the view quote");
+    try{
+        const viewQuote = await quotes.find()
+        res.status(200).json({message:"All Quote Fetched",viewQuote})
+    }
+    catch(err){
+        res.status(500).json({message:"Server Err",err})
+    }
+}

@@ -4,6 +4,7 @@ const express = require('express')
 //4 import userController
 const quoteController = require('../Controllers/quoteController')
 
+const adminJwtMiddleware = require('../middlewares/adminJwtMiddleware')
 
 const jwtMiddleware = require('../middlewares/jwtMiddleware')
 
@@ -12,6 +13,9 @@ const quoteRoute = express.Router()
 
 //5 Add Quote - endpoints define
 quoteRoute.post('/api/addQuote',jwtMiddleware,quoteController.addQuote)
+
+// ViewQuote - endpoints define
+quoteRoute.get('/api/viewQuote',adminJwtMiddleware,quoteController.viewQuote)
 
 
 //3 export route
