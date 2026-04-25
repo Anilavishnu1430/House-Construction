@@ -45,3 +45,8 @@ export const updateUserProfileAPI = async(id,reqBody,reqHeader)=>{
 export const viewAllQuoteAPI = async(reqHeader)=>{
     return await commonAPI('GET',`${serverURL}/api/viewQuote`,"",reqHeader)
 }
+
+//Add Reply - api/addReply
+export const addReplyAPI = async(reqBody,reqHeader)=>{
+    return await commonAPI('POST',`${serverURL}/api/addReply`,reqBody,reqHeader)
+}

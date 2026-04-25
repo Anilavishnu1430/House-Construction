@@ -6,6 +6,7 @@ const cors = require('cors')
 const userRoute = require('./router/userRoute')
 const projectRoute = require('./router/projectRoute')
 const quoteRoute = require('./router/quoteRoute')
+const ReplyRoute = require('./router/replyRoute')
 
 const houseServer = express()
 
@@ -15,6 +16,7 @@ houseServer.use(userRoute)
 houseServer.use(projectRoute)
 houseServer.use('/uploads',express.static('./uploads'))
 houseServer.use(quoteRoute)
+houseServer.use(ReplyRoute)
 
 const PORT = 3000 || process.env.PORT
 

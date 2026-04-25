@@ -5,7 +5,7 @@ import { Card, Label, TableBody, TableCell, TableHead, TableHeadCell, TableRow, 
 import { Table, Button } from "flowbite-react";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
 import { useState } from "react";
-import { viewAllQuoteAPI } from '../../services/allAPIs';
+import { addReplyAPI, viewAllQuoteAPI } from '../../services/allAPIs';
 
 
 function AdminHome() {
@@ -14,6 +14,28 @@ function AdminHome() {
     const [token, setToken] = React.useState("")
     console.log(token);
     const [quote, setQuote] = React.useState([])
+
+    // const[selectedEmail, setSelectedEmail]= React.useState("")
+    const [replyMessage, setReplyMessage] = React.useState({
+        userEmail: "",
+        message: ""
+    })
+    const handleSendReply = async () => {
+        const { userEmail, message } = replyMessage;
+        try {
+            const token = sessionStorage.getItem("token")
+            const reqHeader = {
+                Authorization: `Bearer ${token}`
+            }
+            const response = await addReplyAPI(replyMessage, reqHeader)
+            console.log(response);
+            setOpenModal(false);
+            setReplyMessage({ userEmail: "", message: "" })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
 
     useEffect(() => {
         setToken(sessionStorage.getItem("token"))
@@ -70,24 +92,24 @@ function AdminHome() {
 
                         <TableBody className="divide-y">
                             {
-                                quote.length>0?
-                                quote.map(item=>(
-                                    <TableRow>
-                                <TableCell className='text-[#660000]'>{item.name}</TableCell>
-                                <TableCell className='text-[#660000]'>{item.mobile}</TableCell>
-                                <TableCell className='text-[#660000]'>{item.location}</TableCell>
-                                <TableCell className='text-[#660000]'>{item.city}</TableCell>
-                                <TableCell className='text-[#660000]'>{item.email}</TableCell>
-                                <TableCell className='text-[#660000]'>{item.service}</TableCell>
-                                <TableCell className='text-[#660000]'>{item.message}</TableCell>
-                                <TableCell>
-                                    <Button onClick={() => setOpenModal(true)} className="bg-[#660000] hover:bg-[#5E445C] text-white text-sm">
-                                        Replay
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
-                                ))
-                                :"No quote found"
+                                quote.length > 0 ?
+                                    quote.map(item => (
+                                        <TableRow>
+                                            <TableCell className='text-[#660000]'>{item.name}</TableCell>
+                                            <TableCell className='text-[#660000]'>{item.mobile}</TableCell>
+                                            <TableCell className='text-[#660000]'>{item.location}</TableCell>
+                                            <TableCell className='text-[#660000]'>{item.city}</TableCell>
+                                            <TableCell className='text-[#660000]'>{item.email}</TableCell>
+                                            <TableCell className='text-[#660000]'>{item.service}</TableCell>
+                                            <TableCell className='text-[#660000]'>{item.message}</TableCell>
+                                            <TableCell>
+                                                <Button onClick={() => { setReplyMessage({ ...replyMessage, userEmail: item.email }); setOpenModal(true) }} className="bg-[#660000] hover:bg-[#5E445C] text-white text-sm">
+                                                    Reply
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                    : "No quote found"
                             }
 
                         </TableBody>
@@ -95,16 +117,19 @@ function AdminHome() {
                 </Card>
             </section>
             <Modal size='xl' dismissible show={openModal} onClose={() => setOpenModal(false)}>
-                <ModalHeader><span className="text-[#660000] font-bold text-2xl">Replay</span></ModalHeader>
+                <ModalHeader><span className="text-[#660000] font-bold text-2xl">Reply</span></ModalHeader>
                 <ModalBody>
                     <form>
+                        <p className="text-sm text-gray-600 mb-2">
+                            Replying to: <span className="font-semibold">{replyMessage.userEmail}</span>
+                        </p>
                         <div>
-                            <Textarea id="message" placeholder="Type your Replay..." rows={4} className="mt-2" />
+                            <Textarea onChange={e => setReplyMessage({ ...replyMessage, message: e.target.value })} id="message" placeholder="Type your Replay..." rows={4} className="mt-2" />
                         </div>
                     </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button className='bg-[#330000] hover:bg-[#5E445C]' onClick={() => setOpenModal(false)}>Send</Button>
+                    <Button onClick={handleSendReply} className='bg-[#330000] hover:bg-[#5E445C]'>Send</Button>
                 </ModalFooter>
             </Modal>
             <Footer />
