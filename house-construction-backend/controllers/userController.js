@@ -85,3 +85,15 @@ exports.updateUserProfile=async(req,res)=>{
         res.status(500).json({message:"Server err",err})
     }
 }
+
+//Get all Users - GET
+exports.getAllUsers=async(req,res)=>{
+    console.log("Inside get all Users"); 
+    try{
+            const allusers = await users.find({ role: { $nin: ["admin", "contractor"] } })
+            res.status(200).json({message:"users fetched",allusers})
+        }
+        catch(err){
+            res.status(500).json({message:"Server err",err})
+        }
+}

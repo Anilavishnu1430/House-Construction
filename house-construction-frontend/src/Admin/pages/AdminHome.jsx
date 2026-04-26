@@ -11,8 +11,6 @@ import { addReplyAPI, viewAllQuoteAPI } from '../../services/allAPIs';
 function AdminHome() {
     const [openModal, setOpenModal] = useState(false);
 
-    const [token, setToken] = React.useState("")
-    console.log(token);
     const [quote, setQuote] = React.useState([])
 
     
@@ -52,15 +50,15 @@ function AdminHome() {
     }
 
     useEffect(() => {
-        setToken(sessionStorage.getItem("token"))
         viewQuote()
-    }, [token])
+    }, [])
 
     const viewQuote = async () => {
+        const token = sessionStorage.getItem("token")
+        const reqHeader = {
+            Authorization: `Bearer ${token}`
+        }
         try {
-            const reqHeader = {
-                Authorization: `Bearer ${token}`
-            }
             const response = await viewAllQuoteAPI(reqHeader)
             console.log(response);
             setQuote(response.data.viewQuote)

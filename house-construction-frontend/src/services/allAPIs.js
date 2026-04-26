@@ -55,3 +55,8 @@ export const addReplyAPI = async(reqBody,reqHeader)=>{
 export const viewReplyAPI = async(reqHeader)=>{
     return await commonAPI('GET',`${serverURL}/api/viewReply`,"",reqHeader)
 }
+
+//Get All Users- /api/getAllUsers
+export const getAllUsersAPI = async(reqHeader)=>{
+    return await commonAPI('GET',`${serverURL}/api/getAllUsers`,"",reqHeader)
+}
