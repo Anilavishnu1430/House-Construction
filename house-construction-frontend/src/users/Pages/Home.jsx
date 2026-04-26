@@ -27,25 +27,32 @@ function Home() {
 
     const { name, mobile, location, city, email, service, message } = quote;
     if (name && mobile && location && city && email && service && message) {
-      let token = sessionStorage.getItem("token")
-      const reqHeader = {
-        Authorization: `Bearer ${token}`
+      try {
+        let token = sessionStorage.getItem("token")
+        const reqHeader = {
+          Authorization: `Bearer ${token}`
+        }
+        const reqBody = { name, mobile, location, city, email, service, message }
+        const response = await addQuoteAPI(reqBody, reqHeader)
+        console.log(response);
+        if (response.status === 200) {
+          alert(response.data.message)
+          setQuote({
+            name: "",
+            mobile: "",
+            location: "",
+            city: "",
+            email: "",
+            service: "",
+            message: ""
+          })
+        }
+        setOpenModal(false)
       }
-      const response = await addQuoteAPI(quote, reqHeader)
-      console.log(response);
-      if (response.status === 200) {
-        alert(response.data.message)
-        setQuote({
-          name: "",
-          mobile: "",
-          location: "",
-          city: "",
-          email: "",
-          service: "",
-          message: ""
-        })
+      catch (err) {
+        console.log(err);
+        alert("Error while add quote")
       }
-      setOpenModal(false)
     }
     else {
       alert("Please fill the form")

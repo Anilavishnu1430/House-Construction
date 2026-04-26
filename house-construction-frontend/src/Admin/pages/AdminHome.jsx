@@ -26,7 +26,8 @@ function AdminHome() {
                 const reqHeader = {
                     Authorization: `Bearer ${token}`
                 }
-                const response = await addReplyAPI(replyMessage, reqHeader)
+                const reqBody = { userEmail, message }
+                const response = await addReplyAPI(reqBody, reqHeader)
                 console.log(response);
                 setOpenModal(false);
                 if (response.status === 200) {

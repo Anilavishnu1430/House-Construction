@@ -1,13 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminHeader from '../components/AdminHeader'
 import Footer from '../../components/Footer'
 import { Button, Modal, Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
 import { useState } from "react";
-
+import { viewRequestWorkAPI } from '../../services/allAPIs';
+import { TiTick } from "react-icons/ti";
+import { IoCloseSharp } from "react-icons/io5";
 
 
 function WorkRequest() {
+    const [requestWork, setRequestWork] = React.useState([])
+
+    useEffect(() => {
+            viewRequestWork()
+        }, [])
+    
+        const viewRequestWork = async () => {
+            const token = sessionStorage.getItem("token")
+            const reqHeader = {
+                Authorization: `Bearer ${token}`
+            }
+            try {
+                const response = await viewRequestWorkAPI(reqHeader)
+                console.log(response);
+                setRequestWork(response.data.viewRequestWork)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+
     const [openModal, setOpenModal] = useState(false);
   return (
     <div>
@@ -23,46 +46,37 @@ function WorkRequest() {
             <TableHeadCell className="bg-[#330000] text-white">Trade</TableHeadCell>
             <TableHeadCell className="bg-[#330000] text-white">Location</TableHeadCell>
             <TableHeadCell className="bg-[#330000] text-white">Start Date</TableHeadCell>
+            <TableHeadCell className="bg-[#330000] text-white">Project Name</TableHeadCell>
             <TableHeadCell className="bg-[#330000] text-white"></TableHeadCell>
           </TableRow>
         </TableHead>
 
         <TableBody className="divide-y">
-          <TableRow>
+          {
+            requestWork.length>0?
+            requestWork.map(item=>(
+              <TableRow>
             <TableCell className="font-medium text-[#660000]">1</TableCell>
-            <TableCell className='text-[#660000]'>Rajesh</TableCell>
-            <TableCell className='text-[#660000]'>Home Construction</TableCell>
-            <TableCell className='text-[#660000]'>Electrian</TableCell>
-            <TableCell className='text-[#660000]'>Kochi</TableCell>
-            <TableCell className='text-[#660000]'>2026-04-06</TableCell>
+            <TableCell className='text-[#660000]'>{item.name}</TableCell>
+            <TableCell className='text-[#660000]'>{item.type}</TableCell>
+            <TableCell className='text-[#660000]'>{item.trade}</TableCell>
+            <TableCell className='text-[#660000]'>{item.location}</TableCell>
+            <TableCell className='text-[#660000]'>{item.date}</TableCell>
+            <TableCell className='text-[#660000]'>{item.projectname}</TableCell>
             <TableCell>
-              <Button onClick={() => setOpenModal(true)} size="xs" className="bg-[#660000] hover:bg-[#5E445C] text-white mr-2">Awaiting Approval</Button>
+              <div className='flex justify-evenly'>
+                <Button size="xs" className="bg-[#660000] hover:bg-[#5E445C] text-white mr-2 w-20">
+                  <TiTick className='text-2xl'/>
+                  </Button>
+              <Button size="xs" className="bg-[#660000] hover:bg-[#5E445C] text-white mr-2 w-20">
+                <IoCloseSharp  className='text-2xl'/>
+                </Button>
+              </div>
             </TableCell>
           </TableRow>
-
-          <TableRow className="bg-white">
-            <TableCell className="font-medium text-[#660000]">2</TableCell>
-            <TableCell className='text-[#660000]'>Meenu</TableCell>
-            <TableCell className='text-[#660000]'>Renovation</TableCell>
-            <TableCell className='text-[#660000]'>Engineer</TableCell>
-            <TableCell className='text-[#660000]'>Kochi</TableCell>
-            <TableCell className='text-[#660000]'>2026-04-07</TableCell>
-            <TableCell>
-              <Button size="xs" className="bg-[#660000] hover:bg-[#5E445C] text-white mr-2">Awaiting Approval</Button>
-            </TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell className="font-medium text-[#660000]">3</TableCell>
-            <TableCell className='text-[#660000]'>Vishal</TableCell>
-            <TableCell className='text-[#660000]'>Home Construction</TableCell>
-            <TableCell className='text-[#660000]'>Plumber</TableCell>
-            <TableCell className='text-[#660000]'>Kochi</TableCell>
-            <TableCell className='text-[#660000]'>2026-04-06</TableCell>
-            <TableCell>
-              <Button size="xs" className="bg-[#660000] hover:bg-[#5E445C] text-white mr-2">Awaiting Approval</Button>
-            </TableCell>
-          </TableRow>
+            ))
+            :"No request found"
+          }
         </TableBody>
       </Table>
     </div>

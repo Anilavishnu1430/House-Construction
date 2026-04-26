@@ -60,3 +60,23 @@ export const viewReplyAPI = async(reqHeader)=>{
 export const getAllUsersAPI = async(reqHeader)=>{
     return await commonAPI('GET',`${serverURL}/api/getAllUsers`,"",reqHeader)
 }
+
+//Add Request work - api/addRequestWork
+export const addRequestWorkAPI = async(reqBody,reqHeader)=>{
+    return await commonAPI('POST',`${serverURL}/api/addRequestWork`,reqBody,reqHeader)
+}
+
+//View RequestWork - /api/viewRequestWork
+export const viewRequestWorkAPI = async(reqHeader)=>{
+    return await commonAPI('GET',`${serverURL}/api/viewRequestWork`,"",reqHeader)
+}
+
+//approveRequest - /api/approveRequest
+export const approveRequestAPI = async(id,reqHeader)=>{
+    return await commonAPI('PUT',`${serverURL}/api/approveRequest/${id}`,"",reqHeader)
+}
+
+//rejectRequest - /api/rejectRequest
+export const rejectRequestAPI = async(id,reqHeader)=>{
+    return await commonAPI('PUT',`${serverURL}/api/rejectRequest/${id}`,"",reqHeader)
+}
