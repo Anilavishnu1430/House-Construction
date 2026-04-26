@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../../components/Footer';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
+import { viewReplyAPI } from '../../services/allAPIs';
 
 
 function Notification() {
+    const [token, setToken] = React.useState("")
+        console.log(token);
+        const [reply, setReply] = React.useState([])
+
+        useEffect(() => {
+                setToken(sessionStorage.getItem("token"))
+                viewReply()
+            }, [token])
+        
+            const viewReply = async () => {
+                try {
+                    const reqHeader = {
+                        Authorization: `Bearer ${token}`
+                    }
+                    const response = await viewReplyAPI(reqHeader)
+                    console.log(response);
+                    setReply(response.data.viewReply)
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }
     return (
         <div>
             <Header />
@@ -20,12 +43,16 @@ function Notification() {
                     </TableRow>
                 </TableHead>
                 <TableBody className="divide-y">
-                    <TableRow>
-                        <TableCell className="font-medium text-[#660000]">I will check the availabilty</TableCell>
+                    {
+                        reply.length > 0?
+                         reply.map(item=>(
+                            <TableRow>
+                        <TableCell className="font-medium text-[#660000]">{item.message}</TableCell>
                     </TableRow>
-                    <TableRow>
-                        <TableCell className="font-medium text-[#660000]">we are proccessing the request and will be proceed zoon</TableCell>
-                    </TableRow>
+                         ))
+                    :"No Reply Found"
+                    }
+                   
                 </TableBody>
             </Table>
             </div>

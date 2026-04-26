@@ -12,10 +12,10 @@ const jwtMiddleware = require('../middlewares/jwtMiddleware')
 const replyRoute = express.Router()
 
 //5 Add Quote - endpoints define
-replyRoute.post('/api/addReply',jwtMiddleware,replyController.addReply)
+replyRoute.post('/api/addReply',adminJwtMiddleware,replyController.addReply)
 
-// ViewQuote - endpoints define
-//quoteRoute.get('/api/viewQuote',adminJwtMiddleware,quoteController.viewQuote)
+// ViewReply - endpoints define
+replyRoute.get('/api/viewReply',jwtMiddleware,replyController.viewReply)
 
 
 //3 export route

@@ -50,3 +50,8 @@ export const viewAllQuoteAPI = async(reqHeader)=>{
 export const addReplyAPI = async(reqBody,reqHeader)=>{
     return await commonAPI('POST',`${serverURL}/api/addReply`,reqBody,reqHeader)
 }
+
+//View Reply - /api/viewQuote
+export const viewReplyAPI = async(reqHeader)=>{
+    return await commonAPI('GET',`${serverURL}/api/viewReply`,"",reqHeader)
+}

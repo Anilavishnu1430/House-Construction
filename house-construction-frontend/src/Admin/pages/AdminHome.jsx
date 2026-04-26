@@ -15,25 +15,39 @@ function AdminHome() {
     console.log(token);
     const [quote, setQuote] = React.useState([])
 
-    // const[selectedEmail, setSelectedEmail]= React.useState("")
+    
     const [replyMessage, setReplyMessage] = React.useState({
         userEmail: "",
         message: ""
     })
     const handleSendReply = async () => {
         const { userEmail, message } = replyMessage;
-        try {
-            const token = sessionStorage.getItem("token")
-            const reqHeader = {
-                Authorization: `Bearer ${token}`
+        if (message) {
+            try {
+                const token = sessionStorage.getItem("token")
+                const reqHeader = {
+                    Authorization: `Bearer ${token}`
+                }
+                const response = await addReplyAPI(replyMessage, reqHeader)
+                console.log(response);
+                setOpenModal(false);
+                if (response.status === 200) {
+                    alert(response.data.message)
+                    setReplyMessage({
+                        userEmail: "",
+                        message: ""
+                    })
+                    const updatedTable = quote.filter(item => item.email !== userEmail);
+                    setQuote(updatedTable);
+                }
             }
-            const response = await addReplyAPI(replyMessage, reqHeader)
-            console.log(response);
-            setOpenModal(false);
-            setReplyMessage({ userEmail: "", message: "" })
+            catch (err) {
+                console.log(err)
+                alert("Error while sending reply")
+            }
         }
-        catch (err) {
-            console.log(err)
+        else {
+            alert("Please fill the form")
         }
     }
 
