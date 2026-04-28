@@ -97,3 +97,16 @@ exports.getAllUsers=async(req,res)=>{
             res.status(500).json({message:"Server err",err})
         }
 }
+
+//Delete a User 
+exports.deleteAUser=async(req,res)=>{
+    console.log("Inside Delete User");
+    const {id}=req.params
+    try{
+        const user = await users.deleteOne({_id:id})
+        res.status(200).json({message:"user deleted successfully",user})
+    }
+    catch(err){
+        res.status(500).json({message:"Server err",err})
+    }
+}

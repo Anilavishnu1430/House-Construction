@@ -3,8 +3,30 @@ import ContractorHeader from '../components/ContractorHeader'
 import Footer from '../../components/Footer'
 import { Card, Button } from 'flowbite-react'
 import { Link } from 'react-router-dom'
+import { viewWorkHistoryAPI } from '../../services/allAPIs'
+import { useEffect } from 'react'
 
 function History() {
+    const [workHistory, setWorkHistory] = React.useState([])
+    
+      useEffect(() => {
+        getWorkHistory()
+      }, [])
+    
+      const getWorkHistory = async () => {
+        const token = sessionStorage.getItem("token")
+        const reqHeader = {
+          Authorization: `Bearer ${token}`
+        }
+        try {
+          const response = await viewWorkHistoryAPI(reqHeader)
+          console.log(response);
+          setWorkHistory(response.data.history)
+        }
+        catch (err) {
+          console.log(err)
+        }
+      }
     return (
         <div>
             <ContractorHeader />
@@ -15,41 +37,24 @@ function History() {
                 </Button>
             </div> */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 m-5">
-                <Card
+                {
+                    workHistory.length>0?
+                    workHistory.map(item=>(
+                        <Card
                     className="max-w-sm shadow-md"
                     imgAlt="Afzal Khan Residence"
-                    imgSrc="https://cdn.jswonehomes.com/cover_laptop_38_8cb1e8dcff/cover_laptop_38_8cb1e8dcff.webp"
+                    imgSrc={`http://localhost:3000/uploads/${item.uploadedImage}`}
                 >
-                    <h3 className="text-lg font-semibold text-[#660000]">Mr Afzal Khan’s Residence</h3>
-                    <p className="text-sm text-gray-600">Home Construction</p>
-                    <p className="text-sm text-gray-600">Kochi</p>
-                    <p className="text-sm text-gray-600">Date</p>
-                    <p className="text-sm text-gray-600">Status</p>
+                    <h3 className="text-lg font-semibold text-[#660000]">Project Name : {item.projectname}</h3>
+                    <p className="text-sm text-gray-600">Project Type : {item.type}</p>
+                    <p className="text-sm text-gray-600">Location :{item.location}</p>
+                    <p className="text-sm text-gray-600">Date :{item.date}</p>
+                    <p className="text-sm text-gray-600">Status :{item.status}</p>
 
                 </Card>
-                <Card
-                    className="max-w-sm shadow-md"
-                    imgAlt="Lloyd Lopez Residence"
-                    imgSrc="https://cdn.jswonehomes.com/cover_laptop_41_3ba841eb0b/cover_laptop_41_3ba841eb0b.webp"
-                >
-                    <h3 className="text-lg font-semibold text-[#660000]">Mr Lloyd Lopez’s Residence</h3>
-                    <p className="text-sm text-gray-600">Home Construction</p>
-                    <p className="text-sm text-gray-600">Kochi</p>
-                    <p className="text-sm text-gray-600">Date</p>
-                    <p className="text-sm text-gray-600">Status</p>
-                </Card>
-                <Card
-                    className="max-w-sm shadow-md"
-                    imgAlt="Luxury Villa"
-                    imgSrc="https://cdn.jswonehomes.com/Cover_NEW_Laptop_1_c6b8c7e9ab/Cover_NEW_Laptop_1_c6b8c7e9ab.webp"
-                >
-                    <h3 className="text-lg font-semibold text-[#660000]">Ms Mary ES Residence</h3>
-                    <p className="text-sm text-gray-600">Home Construction</p>
-                    <p className="text-sm text-gray-600">Kochi</p>
-                    <p className="text-sm text-gray-600">Date</p>
-                    <p className="text-sm text-gray-600">Status</p>
-                </Card>
-
+                    ))
+                    :"No Work History Found"
+                }
             </div>
             <Footer />
         </div>

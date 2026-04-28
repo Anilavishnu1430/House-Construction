@@ -32,7 +32,7 @@ function ContractorHeader() {
                 🧰 Request Work
               </Link>
               <Link to="/done" className="text-black hover:text-[#660000] font-medium transition-colors">
-                📋 Work Done
+                📋 Work Updates
               </Link>
               <Link to="/history" className="text-black hover:text-[#660000] font-medium transition-colors">
                 📜 Work History

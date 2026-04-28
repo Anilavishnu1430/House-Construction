@@ -24,4 +24,7 @@ userRoute.put('/api/updateProfile/:id',jwtMiddleware,multerMiddleware.single('pr
 //Get all Users
 userRoute.get('/api/getAllUsers',adminJwtMiddleware,usercontroller.getAllUsers)
 
+//User Profile Updation - endpoints define
+userRoute.delete('/api/deleteAUser/:id',adminJwtMiddleware,usercontroller.deleteAUser)
+
 module.exports = userRoute

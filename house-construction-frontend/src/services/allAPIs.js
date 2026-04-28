@@ -80,3 +80,18 @@ export const approveRequestAPI = async(id,reqHeader)=>{
 export const rejectRequestAPI = async(id,reqHeader)=>{
     return await commonAPI('PUT',`${serverURL}/api/rejectRequest/${id}`,"",reqHeader)
 }
+
+//Delete A User - /api/deleteAUser
+export const deleteAUserAPI = async(id,reqHeader)=>{
+    return await commonAPI('DELETE',`${serverURL}/api/deleteAUser/${id}`,"",reqHeader)
+}
+
+//Add Workdone - api/addProject
+export const addWorkdoneAPI = async(reqBody,reqHeader)=>{
+    return await commonAPI('POST',`${serverURL}/api/workdone`,reqBody,reqHeader)
+}
+
+//View Work History - /api/viewWorkHistory
+export const viewWorkHistoryAPI = async(reqHeader)=>{
+    return await commonAPI('GET',`${serverURL}/api/viewWorkHistory`,"",reqHeader)
+}

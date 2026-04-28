@@ -8,6 +8,7 @@ const projectRoute = require('./router/projectRoute')
 const quoteRoute = require('./router/quoteRoute')
 const ReplyRoute = require('./router/replyRoute')
 const workRoute = require('./router/workRoute')
+const workdoneRoute = require('./router/workdoneRoute')
 
 const houseServer = express()
 
@@ -19,6 +20,7 @@ houseServer.use('/uploads',express.static('./uploads'))
 houseServer.use(quoteRoute)
 houseServer.use(ReplyRoute)
 houseServer.use(workRoute)
+houseServer.use(workdoneRoute)
 
 const PORT = 3000 || process.env.PORT
 
