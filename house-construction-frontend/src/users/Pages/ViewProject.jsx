@@ -2,41 +2,116 @@ import { Button, Modal, TabItem } from 'flowbite-react'
 import React from 'react'
 import Header from '../components/Header'
 import Footer from '../../components/Footer'
-import { Link , useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Label, TextInput, Textarea, Radio } from "flowbite-react";
 import { ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
-import { useState , useEffect } from "react";
-import { viewAllProjectAPI } from '../../services/allAPIs'
+import { useState, useEffect } from "react";
+import { makePaymentAPI, viewAllProjectAPI } from '../../services/allAPIs'
 import { getAProjectAPI } from "../../services/allAPIs";
+import {loadStripe} from '@stripe/stripe-js';
 
 
 function ViewProject() {
+    // const [booking, setBooking] = useState({
+    //     type: "",
+    //     date: "",
+    //     stage: "",
+    //     unit: "",
+    //     area: "",
+    //     description: "",
+    //     fullname: "",
+    //     phone: "",
+    //     email: ""
+    // });
+
+    // const handleBooking = async () => {
+
+    //     const { type, date, stage, unit, area, description, fullname, phone, email } = booking;
+    //     console.log(booking);
+        
+    //     if (type && date && stage && unit && area && description && fullname && phone && email) {
+    //         try {
+    //             let token = sessionStorage.getItem("token")
+    //             const reqHeader = {
+    //                 Authorization: `Bearer ${token}`
+    //             }
+    //             const reqBody = { type, date, stage, unit, area, description, fullname, phone, email }
+    //             const response = await addBookingAPI(reqBody, reqHeader)
+    //             console.log(response);
+    //             if (response.status === 200) {
+    //                 alert(response.data.message)
+    //                 setBooking({
+    //                     type: "",
+    //                     date: "",
+    //                     stage: "",
+    //                     unit: "",
+    //                     area: "",
+    //                     description: "",
+    //                     fullname: "",
+    //                     phone: "",
+    //                     email: ""
+    //                 })
+    //             }
+    //             setOpenModal(false)
+    //         }
+    //         catch (err) {
+    //             console.log(err);
+    //             alert("Error while add quote")
+    //         }
+    //     }
+    //     else {
+    //         alert("Please fill the form")
+    //     }
+    // }
+
     const [token, setToken] = React.useState("")
     console.log(token);
-    const {id} = useParams()
+    const { id } = useParams()
     console.log(id);
-    const [project,setProject]=React.useState({})
-    
+    const [project, setProject] = React.useState({})
+
     useEffect(() => {
         setToken(sessionStorage.getItem("token"))
         getProject(id)
     }, [token])
-    
-    
-    const getProject = async(id)=>{
-        try{
-            const reqHeader = { 
-                Authorization : `Bearer ${token}`
+
+
+    const getProject = async (id) => {
+        try {
+            const reqHeader = {
+                Authorization: `Bearer ${token}`
             }
-            const response = await getAProjectAPI(id,reqHeader)
+            const response = await getAProjectAPI(id, reqHeader)
             console.log(response);
             setProject(response.data.project)
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     }
-    
+
+    const handlePayment = async () => {
+        console.log(project);
+        const stripe = await loadStripe('pk_test_51TPyayK0X2MRsi8XV6Ti5JviDUD6pG1Q3jURLiptAVRk2vA75q4lUEqcuuN9a9MQnUvW5tXJCRfbVIiOhOuU3a2k00dTDz90TH');
+        console.log(stripe);
+        const token = sessionStorage.getItem("token")
+      const reqHeader = {
+        Authorization : `Bearer ${token}`
+      }
+      const reqBody = {
+        project: project
+      }
+      try{
+        const response = await makePaymentAPI(reqBody,reqHeader)
+        console.log(response);
+        const checkoutUrl = response.data.session.url
+        window.location.href = checkoutUrl
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+
     const [openModal, setOpenModal] = useState(false);
     return (
         <div>
@@ -78,52 +153,52 @@ function ViewProject() {
             </section>
 
             <Modal size='5xl' dismissible show={openModal} onClose={() => setOpenModal(false)}>
-                <ModalHeader>Construction Project Form</ModalHeader>
+                <ModalHeader>Confirm Your Booking</ModalHeader>
                 <ModalBody>
                     <form className="space-y-10 bg-white shadow-lg rounded-lg p-8">
-                        <h3 className="text-xl font-bold text-[#330000] mb-4">Type of Construction</h3>
+                        {/* <h3 className="text-xl font-bold text-[#330000] mb-4">Type of Construction</h3>
                         <div className="flex flex-col space-y-2">
                             <div className="flex items-center gap-2">
-                                <Radio id="residential" name="constructionType" value="Residential" />
+                                <Radio onChange={e => setBooking({ ...booking, type: e.target.value })} id="residential" name="constructionType" value="Residential" />
                                 <Label htmlFor="residential">Residential</Label>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Radio id="commercial" name="constructionType" value="Commercial" />
+                                <Radio onChange={e => setBooking({ ...booking, type: e.target.value })} id="commercial" name="constructionType" value="Commercial" />
                                 <Label htmlFor="commercial">Commercial</Label>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Radio id="industrial" name="constructionType" value="Industrial" />
+                                <Radio onChange={e => setBooking({ ...booking, type: e.target.value })} id="industrial" name="constructionType" value="Industrial" />
                                 <Label htmlFor="industrial">Industrial</Label>
                             </div>
                         </div>
                         <h3 className="text-xl font-bold text-[#330000] mb-4">Planned Start Date</h3>
                         <div>
                             <Label htmlFor="startDate" value="When do you plan to start?" className="text-[#5E445C]" />
-                            <TextInput id="startDate" type="date" required className="mt-2" />
+                            <TextInput onChange={e => setBooking({ ...booking, date: e.target.value })} id="startDate" type="date" required className="mt-2" />
                         </div>
                         <h3 className="text-xl font-bold text-[#330000] mb-4">Current Stage</h3>
                         <div className="flex flex-col space-y-2">
                             <div className="flex items-center gap-2">
-                                <Radio id="planning" name="stage" value="Planning" />
+                                <Radio onChange={e => setBooking({ ...booking, stage: e.target.value })} id="planning" name="stage" value="Planning" />
                                 <Label htmlFor="planning">Planning</Label>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Radio id="foundation" name="stage" value="Foundation" />
+                                <Radio onChange={e => setBooking({ ...booking, stage: e.target.value })} id="foundation" name="stage" value="Foundation" />
                                 <Label htmlFor="foundation">Foundation</Label>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Radio id="construction" name="stage" value="Construction" />
+                                <Radio onChange={e => setBooking({ ...booking, stage: e.target.value })} id="construction" name="stage" value="Construction" />
                                 <Label htmlFor="construction">Construction</Label>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Radio id="finishing" name="stage" value="Finishing" />
+                                <Radio onChange={e => setBooking({ ...booking, stage: e.target.value })} id="finishing" name="stage" value="Finishing" />
                                 <Label htmlFor="finishing">Finishing</Label>
                             </div>
                         </div>
                         <h3 className="text-xl font-bold text-[#330000] mb-4">Land Details</h3>
                         <div>
                             <Label htmlFor="landUnit" value="Select Unit" className="text-[#5E445C]" />
-                            <select
+                            <select onChange={e => setBooking({ ...booking, unit: e.target.value })}
                                 id="landUnit"
                                 name="landUnit"
                                 className="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#330000] focus:ring-[#330000]"
@@ -136,37 +211,37 @@ function ViewProject() {
                         </div>
                         <div>
                             <Label htmlFor="landSize" value="Land Size (sq ft)" className="text-[#5E445C]" />
-                            <TextInput id="landSize" type="number" placeholder="e.g., 2400" className="mt-2" />
+                            <TextInput onChange={e => setBooking({ ...booking, area: e.target.value })} id="landSize" type="number" placeholder="e.g., 2400" className="mt-2" />
                         </div>
                         <div>
                             <Label htmlFor="landDescription" value="Land Description" className="text-[#5E445C]" />
-                            <Textarea id="landDescription" placeholder="Describe the land..." rows={3} className="mt-2" />
+                            <Textarea onChange={e => setBooking({ ...booking, description: e.target.value })} id="landDescription" placeholder="Describe the land..." rows={3} className="mt-2" />
                         </div>
                         <h3 className="text-xl font-bold text-[#330000] mb-4">Contact Information</h3>
                         <div>
                             <Label htmlFor="name" value="Name" className="text-[#5E445C]" />
-                            <TextInput id="name" type="text" placeholder="Your full name" required className="mt-2" />
+                            <TextInput onChange={e => setBooking({ ...booking, fullname: e.target.value })} id="name" type="text" placeholder="Your full name" required className="mt-2" />
                         </div>
                         <div>
                             <Label htmlFor="phone" value="Phone Number" className="text-[#5E445C]" />
-                            <TextInput id="phone" type="tel" placeholder="Enter phone number" required className="mt-2" />
+                            <TextInput id="phone" type="tel" onChange={e => setBooking({ ...booking, phone: e.target.value })} placeholder="Enter phone number" required className="mt-2" />
                         </div>
                         <div>
                             <Label htmlFor="email" value="Email Address" className="text-[#5E445C]" />
-                            <TextInput id="email" type="email" placeholder="you@example.com" required className="mt-2" />
-                        </div>
+                            <TextInput id="email" type="email" onChange={e => setBooking({ ...booking, email: e.target.value })} placeholder="you@example.com" required className="mt-2" />
+                        </div> */}
                         <h3 className="text-xl font-bold text-[#330000] mb-4">Advance Payment</h3>
                         <div className="bg-gray-100 border border-gray-300 rounded-lg p-4">
-                        <p className="text-[#5E445C] font-semibold">Advance Payment Amount</p>
-                        <p className="text-2xl font-bold text-[#330000] mt-2">₹5000</p>
-                        <p className="text-sm text-[#5E445C] mt-1">*This amount is fixed and required to proceed</p>
+                            <p className="text-[#5E445C] font-semibold">Advance Payment Amount</p>
+                            <p className="text-2xl font-bold text-[#330000] mt-2">₹5000</p>
+                            <p className="text-sm text-[#5E445C] mt-1">*This amount is fixed and required to proceed</p>
                         </div>
                     </form>
                 </ModalBody>
                 <ModalFooter>
                     <Button
-                        onClick={() => setOpenModal(false)}
-                        type="submit"
+                        onClick={() => { setOpenModal(false);handlePayment(); }}
+                        type="button"
                         className="w-full bg-[#330000] hover:bg-[#5E445C] text-white font-semibold"
                     >
                         Confirm & Pay ₹5000

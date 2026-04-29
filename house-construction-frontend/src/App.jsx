@@ -20,6 +20,8 @@ import ProfileSettings from './Contractors/pages/ProfileSettings'
 import History from './Contractors/pages/History'
 import Notification from './users/Pages/Notification'
 import AddProjects from './Admin/pages/AddProjects'
+import Paymenterror from './users/Pages/Paymenterror'
+import Paymentsuccess from './users/Pages/Paymentsuccess'
 
 
 function App() {
@@ -38,6 +40,9 @@ function App() {
         <Route path='/viewproject/:id' element={<ViewProject/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='notification' element={<Notification/>}/>
+        {/* Payement part */}
+        <Route path='/payment-success' element={<Paymentsuccess/>}/>
+        <Route path='/payment-error' element={<Paymenterror/>}/>
         {/* Admin Part */}
         <Route path='/adminhome' element={<AdminHome/>}/>
         <Route path='/work' element={<WorkRequest/>}/>

@@ -95,3 +95,13 @@ export const addWorkdoneAPI = async(reqBody,reqHeader)=>{
 export const viewWorkHistoryAPI = async(reqHeader)=>{
     return await commonAPI('GET',`${serverURL}/api/viewWorkHistory`,"",reqHeader)
 }
+
+//Add booking - api/addBooking
+// export const addBookingAPI = async(reqBody,reqHeader)=>{
+//     return await commonAPI('POST',`${serverURL}/api/addbooking`,reqBody,reqHeader)
+// }
+
+//Make Payement
+export const makePaymentAPI = async(reqBody,reqHeader)=>{
+    return await commonAPI('POST',`${serverURL}/api/makepayment`,reqBody,reqHeader)
+}

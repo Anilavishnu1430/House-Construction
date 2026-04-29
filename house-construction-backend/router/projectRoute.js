@@ -21,5 +21,8 @@ projectRoute.get('/api/viewProjects',jwtMiddleware,projectController.viewProject
 // Get A Project - endpoints define
 projectRoute.get('/api/getAProject/:id',jwtMiddleware,projectController.getAProject)
 
+// makepayment - endpoints define
+projectRoute.post('/api/makepayment',jwtMiddleware,projectController.makePayment)
+
 //3 export route
 module.exports = projectRoute
