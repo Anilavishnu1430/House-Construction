@@ -76,7 +76,7 @@ function WorkDone() {
         <div>
             <ContractorHeader />
             <h1 className="text-3xl font-bold text-[#660000] m-6">Work Updates</h1>
-            <form className="bg-[#b89393] space-y-8 shadow-lg rounded-lg m-8 p-8">
+            <form className="bg-white space-y-8 shadow-lg rounded-lg m-8 p-8">
                 <div className="flex flex-col md:flex-row gap-10">
                     <div className="flex-1 space-y-6">
                         <Label htmlFor="name" className="text-[#660000]">Project Name</Label>

@@ -6,7 +6,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { Label, TextInput, Textarea } from "flowbite-react";
 import { Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { useState } from "react";
-import { addContractorAPI, getAllContractorsAPI, updateContractorAPI } from '../../services/allAPIs';
+import { addContractorAPI, deleteAContractorAPI, getAllContractorsAPI, updateContractorAPI } from '../../services/allAPIs';
 import { useEffect } from 'react';
 
 function Contractors() {
@@ -151,6 +151,21 @@ function Contractors() {
         }
     }
 
+    const handleDelete = async (id) => {
+        const token = sessionStorage.getItem("token")
+        const reqHeader = {
+          Authorization: `Bearer ${token}`
+        }
+        try {
+          const response = await deleteAContractorAPI(id,reqHeader)
+          console.log(response);
+          viewContractor()
+        }
+        catch (err) {
+          console.log(err)
+        }
+      }
+
     const [openModal, setOpenModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false)
     return (
@@ -197,8 +212,8 @@ function Contractors() {
                                         <TableCell className="text-[#660000]">{item.notes}</TableCell>
                                         <TableCell className="text-[#660000]">{item.status}</TableCell>
                                         <TableCell>
-                                            <p onClick={() => handleEditClick(item)} size="xs" className="text-[#660000] mb-2"><FaEdit /></p>
-                                            <p size="xs" className="text-[#660000] mb-2"><FaTrash /></p>
+                                            <p  size="xs" className="text-[#660000] mb-2"><FaEdit onClick={() => handleEditClick(item)}/></p>
+                                            <p size="xs" className="text-[#660000] mb-2"><FaTrash  onClick={()=>handleDelete(item._id)}/></p>
                                         </TableCell>
                                     </TableRow>
                                 ))

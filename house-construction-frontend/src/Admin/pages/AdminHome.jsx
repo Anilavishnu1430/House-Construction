@@ -73,21 +73,26 @@ function AdminHome() {
             <AdminHeader />
             <section className="p-8">
                 <h1 className="text-3xl font-bold text-[#660000] mb-6">Admin Dashboard</h1>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                    <div className="bg-[#5E445C] p-6 rounded-lg text-center">
-                        <p className="text-xl font-semibold">TotalProjects</p>
-                        <p className="text-3xl font-bold">120</p>
-                    </div>
-                    <div className="bg-[#5E445C] p-6 rounded-lg text-center">
-                        <p className="text-xl font-semibold">Total Users</p>
-                        <p className="text-3xl font-bold">60</p>
-                    </div>
-                    <div className="bg-[#5E445C] p-6 rounded-lg text-center">
-                        <p className="text-xl font-semibold">Contractors</p>
-                        <p className="text-3xl font-bold">38</p>
-                    </div>
-                </div>
-                <Card>
+                
+                <div className="grid grid-cols-3 gap-8 mb-10">
+
+          <div className="bg-blue-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
+            <p className="text-black-500 text-sm">Total Projects</p>
+            <p className="text-4xl font-bold text-black-500 mt-2">120</p>
+          </div>
+
+          <div className="bg-green-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
+            <p className="text-black-500 text-sm">Total Users</p>
+            <p className="text-4xl font-bold text-black-500 mt-2">68</p>
+          </div>
+
+          <div className="bg-yellow-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
+            <p className="ttext-black-500 text-sm">Contractors</p>
+            <p className="text-4xl font-bold text-black-500 mt-2">30</p>
+          </div>
+
+        </div>
+                <div>
                     <h2 className="text-xl font-bold mb-4">Notifications</h2>
                     <Table className="border border-[#330000]">
                         <TableHead>
@@ -127,7 +132,7 @@ function AdminHome() {
 
                         </TableBody>
                     </Table>
-                </Card>
+                </div>
             </section>
             <Modal size='xl' dismissible show={openModal} onClose={() => setOpenModal(false)}>
                 <ModalHeader><span className="text-[#660000] font-bold text-2xl">Reply</span></ModalHeader>

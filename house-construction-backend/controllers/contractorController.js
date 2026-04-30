@@ -52,7 +52,7 @@ exports.updateContractor=async(req,res)=>{
 }
 
 //Delete a Contractor 
-exports.deleteAUser=async(req,res)=>{
+exports.deleteAContractor=async(req,res)=>{
     console.log("Inside Delete Contractor");
     const {id}=req.params
     try{

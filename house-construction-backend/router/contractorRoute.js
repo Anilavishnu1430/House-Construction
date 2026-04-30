@@ -19,7 +19,7 @@ contractorRoute.get('/api/viewContractor',adminJwtMiddleware,contractorControlle
 contractorRoute.put('/api/updateContractor/:id',adminJwtMiddleware,contractorController.updateContractor)
 
 //contractor Profile Delete - endpoints define
-contractorRoute.delete('/api/deleteAcontractor/:id',adminJwtMiddleware,contractorController.deleteAController)
+contractorRoute.delete('/api/deleteAcontractor/:id',adminJwtMiddleware,contractorController.deleteAContractor)
 
 //3 export route
 module.exports = contractorRoute
