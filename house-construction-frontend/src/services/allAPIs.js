@@ -105,3 +105,18 @@ export const viewWorkHistoryAPI = async(reqHeader)=>{
 export const makePaymentAPI = async(reqBody,reqHeader)=>{
     return await commonAPI('POST',`${serverURL}/api/makepayment`,reqBody,reqHeader)
 }
+
+//Add contractor - api/addContractor
+ export const addContractorAPI = async(reqBody,reqHeader)=>{
+     return await commonAPI('POST',`${serverURL}/api/addContractor`,reqBody,reqHeader)
+ }
+
+ //View all Contractor - /api/viewRequestWork
+export const getAllContractorsAPI = async(reqHeader)=>{
+    return await commonAPI('GET',`${serverURL}/api/viewContractor`,"",reqHeader)
+}
+
+//update contractor Details
+export const updateContractorAPI = async (id, reqBody, reqHeader) => {
+    return await commonAPI('PUT', `${serverURL}/api/updateContractor/${id}`, reqBody, reqHeader)
+}

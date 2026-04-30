@@ -105,10 +105,10 @@ exports.makePayment=async(req,res)=>{
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "inr",
             product_data: {
-              name: `Construction Project - ${project.projectname}`,
-              description: `Location: ${project.location}, Type: ${project.type}`,
+              name: `Construction Project - ${project.price}`,
+              description: `Location: ${project.location}`,
             },
             unit_amount: Math.round(5000 * 100), // cents
           },

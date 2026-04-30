@@ -8,7 +8,7 @@ import { ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { makePaymentAPI, viewAllProjectAPI } from '../../services/allAPIs'
 import { getAProjectAPI } from "../../services/allAPIs";
-import {loadStripe} from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 function ViewProject() {
@@ -28,7 +28,7 @@ function ViewProject() {
 
     //     const { type, date, stage, unit, area, description, fullname, phone, email } = booking;
     //     console.log(booking);
-        
+
     //     if (type && date && stage && unit && area && description && fullname && phone && email) {
     //         try {
     //             let token = sessionStorage.getItem("token")
@@ -95,21 +95,21 @@ function ViewProject() {
         const stripe = await loadStripe('pk_test_51TPyayK0X2MRsi8XV6Ti5JviDUD6pG1Q3jURLiptAVRk2vA75q4lUEqcuuN9a9MQnUvW5tXJCRfbVIiOhOuU3a2k00dTDz90TH');
         console.log(stripe);
         const token = sessionStorage.getItem("token")
-      const reqHeader = {
-        Authorization : `Bearer ${token}`
-      }
-      const reqBody = {
-        project: project
-      }
-      try{
-        const response = await makePaymentAPI(reqBody,reqHeader)
-        console.log(response);
-        const checkoutUrl = response.data.session.url
-        window.location.href = checkoutUrl
-      }
-      catch(err){
-        console.log(err);
-      }
+        const reqHeader = {
+            Authorization: `Bearer ${token}`
+        }
+        const reqBody = {
+            project: project
+        }
+        try {
+            const response = await makePaymentAPI(reqBody, reqHeader)
+            console.log(response);
+            const checkoutUrl = response.data.session.url
+            window.location.href = checkoutUrl
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 
     const [openModal, setOpenModal] = useState(false);
@@ -152,10 +152,14 @@ function ViewProject() {
                 </div>
             </section>
 
-            <Modal size='5xl' dismissible show={openModal} onClose={() => setOpenModal(false)}>
+            <Modal size='5xl' dismissible show={openModal} onClose={() => setOpenModal(false)} >
                 <ModalHeader>Confirm Your Booking</ModalHeader>
                 <ModalBody>
-                    <form className="space-y-10 bg-white shadow-lg rounded-lg p-8">
+                    <p className='text-xl text-[#5E445C] my-2'>
+                        “Your dream home at a fixed budget of ₹{project.price} is ready to book. While the construction cost remains the same, you’re free to personalize interiors, flooring, and the overall outline to match your style. Secure your booking today with an advance of ₹5000.”
+                    </p>
+
+                    <form className="space-y-1 rounded-lg">
                         {/* <h3 className="text-xl font-bold text-[#330000] mb-4">Type of Construction</h3>
                         <div className="flex flex-col space-y-2">
                             <div className="flex items-center gap-2">
@@ -240,7 +244,7 @@ function ViewProject() {
                 </ModalBody>
                 <ModalFooter>
                     <Button
-                        onClick={() => { setOpenModal(false);handlePayment(); }}
+                        onClick={() => { setOpenModal(false); handlePayment(); }}
                         type="button"
                         className="w-full bg-[#330000] hover:bg-[#5E445C] text-white font-semibold"
                     >
