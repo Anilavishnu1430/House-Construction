@@ -24,18 +24,18 @@ function ContractorHome() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
 
           <div className="bg-blue-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
-            <p className="text-black-500 text-sm">Work Request</p>
-            <p className="text-4xl font-bold text-black-500 mt-2">5</p>
+            <p className="text-black text-sm">Work Request</p>
+            <p className="text-4xl font-bold text-black mt-2">5</p>
           </div>
 
           <div className="bg-green-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
-            <p className="text-black-500 text-sm">Work Completed</p>
-            <p className="text-4xl font-bold text-black-500 mt-2">12</p>
+            <p className="text-black text-sm">Work Completed</p>
+            <p className="text-4xl font-bold text-black mt-2">12</p>
           </div>
 
           <div className="bg-yellow-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
-            <p className="ttext-black-500 text-sm">Pending Approvals</p>
-            <p className="text-4xl font-bold text-black-500 mt-2">3</p>
+            <p className="text-black text-sm">Pending Approvals</p>
+            <p className="text-4xl font-bold text-black mt-2">3</p>
           </div>
 
         </div>

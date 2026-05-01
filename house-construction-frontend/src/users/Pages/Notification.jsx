@@ -30,10 +30,10 @@ function Notification() {
     return (
         <div>
             <Header />
-            <h1 className="text-3xl font-extrabold text-[#330000] m-8 text-center">Notification</h1>
+            <h1 className="text-3xl font-extrabold text-[#660000] m-8 text-center">Notification</h1>
             {/* <h2 className="font-extrabold text-[#330000] m-8 text-center">No notification yet</h2> */}
             <div className="flex justify-center items-center mb-10">
-                <div className="w-[60%] bg-white shadow-lg rounded-lg p-4">
+                <div className="w-[60%] p-4">
                     <Table className='border border-[#660000]'>
                         <TableHead>
                             <TableRow>

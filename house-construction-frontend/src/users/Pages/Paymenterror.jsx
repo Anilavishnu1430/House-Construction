@@ -17,7 +17,7 @@ function Paymenterror() {
         We Apologize for the inconvience caused and appreciate your visit to bookstore.
       </p>
       <Link to={"/projects"}>
-      <Button  className="bg-gray-900 hover:bg-yellow-500 inline-flex items-center gap-2">
+      <Button  className=" inline-flex items-center gap-2 bg-[#660000] hover:bg-[#5E445C]">
         <HiArrowLeft className="h-5 w-5" />
         Explore More Project
       </Button>

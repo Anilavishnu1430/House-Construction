@@ -21,7 +21,7 @@ function Profile() {
       <Header />
       <section className="py-12 flex justify-center">
         <div className="w-full max-w-4xl p-8">
-          <h2 className="text-3xl font-extrabold text-[#330000] mb-8 text-center">
+          <h2 className="text-3xl font-extrabold text-[#660000] mb-8 text-center">
             My Profile
           </h2>
           <div className="flex flex-col md:flex-row gap-10 mb-10 bg-white shadow-lg p-10">
@@ -51,10 +51,7 @@ function Profile() {
                   <li><span className="font-semibold">Phone Number:</span> {userData.phone}</li>
                   <li><span className="font-semibold">Bio:</span> {userData.bio}</li>
                 </ul>
-                <div className="bg-[#5E445C] rounded-lg p-6 text-center">
-                  <p className="text-3xl font-bold text-[#660000]">₹5000</p>
-                  <p className="text-[#660000]">Total Paid</p>
-                </div>
+                
               </div>
             </div>
           </div>

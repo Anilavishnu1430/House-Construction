@@ -59,46 +59,7 @@ exports.getAProject=async(req,res)=>{
 exports.makePayment=async(req,res)=>{
     console.log("Inside Payment");
     const {project}=req.body
-    // try{
-       
-
-    //     const line_items = [
-    //     {
-    //         price_data: {
-    //         currency: "usd",
-    //         product_data: {
-    //           name: `Construction Project - ${project.projectname}`,
-    //           description: `Location: ${project.location}, Type: ${project.type}`,
-    //           metadata: {
-    //         projectId: project._id?.toString(),
-    //         projectname: project.projectname,
-    //         location: project.location,
-    //         type: project.type,
-    //         plotsize: project.plotsize,
-    //         direction: project.direction,
-    //         price: project.price,
-    //         email: req.payload // if you’re passing user email in JWT payload
-    //     },
-    //         },
-    //         unit_amount: Math.round(Number(project.price) * 100),
-    //         },
-    //         quantity: 1,
-    //     },
-    //     ];
-    //     const session = await Stripe.checkout.sessions.create({
-    //     payment_method_types: ["card"],
-    //     success_url: "http://localhost:5173/payment-success",
-    //     cancel_url: "http://localhost:5173/payment-error",
-    //     line_items,
-    //     mode: "payment",
-    //     });
-    //     console.log(session)
-
-    //     res.status(200).json({message:"Payment Success",session})
-    // }
-    // catch(err){
-    //     res.status(500).json({message:"Server err",err})
-    // }
+    
     try {
     const session = await Stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -107,7 +68,7 @@ exports.makePayment=async(req,res)=>{
           price_data: {
             currency: "inr",
             product_data: {
-              name: `Construction Project - ${project.price}`,
+              name: `Construction Project - ${project.projectname}`,
               description: `Location: ${project.location}`,
             },
             unit_amount: Math.round(5000 * 100), // cents

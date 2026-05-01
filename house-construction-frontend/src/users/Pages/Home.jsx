@@ -10,6 +10,7 @@ import { Label, TextInput, Textarea, Radio } from "flowbite-react";
 import { addQuoteAPI } from '../../services/allAPIs';
 
 
+
 function Home() {
   const [openModal, setOpenModal] = useState(false);
 

@@ -16,15 +16,15 @@ function Paymentsuccess() {
         Congratulations! Your booking is confirmed with an advance payment of ₹5000. You can customize interiors, flooring, and layout as per your choice.
       </p>
      <Link to={"/projects"}>
-      <Button className="bg-gray-900 hover:bg-yellow-500 inline-flex items-center gap-2">
-        <HiArrowLeft className="h-5 w-5" />
-        Explore More Projects
+      <Button className="bg-[#660000] hover:bg-[#5E445C] inline-flex items-center gap-2">
+        
+        Give Feedback
       </Button>
      </Link>
       </div>
       <div>
         <img
-        src="https://cdn.dribbble.com/userupload/30050547/file/original-1dc0d49715f09c43bdd96d535a0c3f06.gif"
+        src="https://i.pinimg.com/originals/0d/e4/1a/0de41a3c5953fba1755ebd416ec109dd.gif"
         alt="Funny GIF"
         className="rounded shadow-md w-100 h-auto"
       />

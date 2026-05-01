@@ -10,10 +10,10 @@ function HowItWorks() {
       <Header/>
       <section className="py-16">
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-black mb-4 text-center">
+        <h2 className="text-4xl font-extrabold text-[#660000] mb-4 text-center dark:text-white">
           How it works
         </h2>
-        <p className="text-lg text-black/80 mb-12 text-center">
+        <p className="text-lg text-black-800 mb-12 text-center">
           Expertly built homes, from concept to completion in approximately 14 months.
         </p>
         <div className="rounded-lg overflow-hidden shadow-lg mb-12">
@@ -23,10 +23,10 @@ function HowItWorks() {
             className="w-full h-96 object-cover"
           />
         </div>
-        <h3 className="text-3xl font-extrabold text-black mb-4 text-center">
+        <h3 className="text-3xl font-extrabold text-[#660000] mb-4 text-center">
           Our building process at glance
         </h3>
-        <p className="text-lg text-black/80 mb-12 text-center">
+        <p className="text-lg text-black-800 mb-12 text-center">
           Explore our step-by-step process of building your dream home.
         </p>
         <div className="space-y-6">

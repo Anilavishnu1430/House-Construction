@@ -3,9 +3,12 @@ import { Avatar, Dropdown, DropdownDivider, DropdownHeader, DropdownItem, Navbar
 import { Link } from 'react-router-dom';
 import Houselogo from "../../assets/Houselogo.png";
 import { serverURL } from '../../services/serverURL';
-
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 function ContractorHeader() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  
   const [contractorDetails, setContractorDetails] = React.useState({})
 
   useEffect(() => {
@@ -40,11 +43,12 @@ function ContractorHeader() {
             </div>
           </div>
           <div className="flex md:order-2 items-center space-x-4">
-            <div className="flex items-center cursor-pointer">
-              <div className="w-10 h-5 bg-gray-300 rounded-full relative">
-                <div className="absolute left-0 top-0 w-5 h-5 bg-white rounded-full shadow"></div>
-              </div>
-            </div>
+            <button
+        onClick={toggleTheme}
+        className="px-4 py-1 rounded bg-black text-white dark:bg-white dark:text-black"
+      >
+        {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+      </button>
             <Link to="/profilesettings" className="text-black hover:text-[#660000] font-medium transition-colors">
               ⚙️
             </Link>

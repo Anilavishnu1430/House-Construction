@@ -77,18 +77,18 @@ function AdminHome() {
                 <div className="grid grid-cols-3 gap-8 mb-10">
 
           <div className="bg-blue-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
-            <p className="text-black-500 text-sm">Total Projects</p>
-            <p className="text-4xl font-bold text-black-500 mt-2">120</p>
+            <p className="text-black text-sm">Total Projects</p>
+            <p className="text-4xl font-bold text-black mt-2">120</p>
           </div>
 
           <div className="bg-green-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
-            <p className="text-black-500 text-sm">Total Users</p>
-            <p className="text-4xl font-bold text-black-500 mt-2">68</p>
+            <p className="text-black text-sm">Total Users</p>
+            <p className="text-4xl font-bold text-black mt-2">68</p>
           </div>
 
           <div className="bg-yellow-100 shadow-md rounded-xl p-6 text-center hover:shadow-xl transition">
-            <p className="ttext-black-500 text-sm">Contractors</p>
-            <p className="text-4xl font-bold text-black-500 mt-2">30</p>
+            <p className="text-black text-sm">Contractors</p>
+            <p className="text-4xl font-bold text-black mt-2">30</p>
           </div>
 
         </div>

@@ -11,7 +11,7 @@ function Contact() {
             <Header />
             <section className="py-16">
                 <div className="max-w-7xl mx-auto px-6">
-                    <h1 className="text-3xl font-bold text-black-800 mb-4">Contact Us</h1>
+                    <h1 className="text-3xl font-bold text-[#660000] mb-4">Contact Us</h1>
                     <p className="text-black-600 mb-10">
                         Ready to build your dream home? Connect with our team to discuss your plot,
                         design ideas, and construction timeline. We'll guide you from concept to completion.
