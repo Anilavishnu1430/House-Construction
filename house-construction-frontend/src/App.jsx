@@ -22,7 +22,7 @@ import Notification from './users/Pages/Notification'
 import AddProjects from './Admin/pages/AddProjects'
 import Paymenterror from './users/Pages/Paymenterror'
 import Paymentsuccess from './users/Pages/Paymentsuccess'
-
+import Rating from './users/Pages/Rating'
 
 function App() {
   
@@ -40,6 +40,7 @@ function App() {
         <Route path='/viewproject/:id' element={<ViewProject/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='notification' element={<Notification/>}/>
+        <Route path='rating' element={<Rating/>}/>
         {/* Payement part */}
         <Route path='/payment-success' element={<Paymentsuccess/>}/>
         <Route path='/payment-error' element={<Paymenterror/>}/>

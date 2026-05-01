@@ -17,7 +17,6 @@ function Paymentsuccess() {
       </p>
      <Link to={"/projects"}>
       <Button className="bg-[#660000] hover:bg-[#5E445C] inline-flex items-center gap-2">
-        
         Give Feedback
       </Button>
      </Link>

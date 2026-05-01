@@ -9,7 +9,8 @@ const quoteRoute = require('./router/quoteRoute')
 const ReplyRoute = require('./router/replyRoute')
 const workRoute = require('./router/workRoute')
 const workdoneRoute = require('./router/workdoneRoute')
- const contractor = require('./router/contractorRoute')
+const contractor = require('./router/contractorRoute')
+const rating = require('./router/ratingRoute')
 
 const houseServer = express()
 
@@ -24,6 +25,7 @@ houseServer.use(ReplyRoute)
 houseServer.use(workRoute)
 houseServer.use(workdoneRoute)
 houseServer.use(contractor)
+houseServer.use(rating)
 
 const PORT = 3000 || process.env.PORT
 
