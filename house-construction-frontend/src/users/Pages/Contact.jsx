@@ -11,8 +11,8 @@ function Contact() {
             <Header />
             <section className="py-16">
                 <div className="max-w-7xl mx-auto px-6">
-                    <h1 className="text-3xl font-bold text-[#660000] mb-4">Contact Us</h1>
-                    <p className="text-black-600 mb-10">
+                    <h1 className="text-3xl font-bold text-[#660000] mb-4" data-aos="zoom-in">Contact Us</h1>
+                    <p className="text-black-600 mb-10" data-aos="zoom-in">
                         Ready to build your dream home? Connect with our team to discuss your plot,
                         design ideas, and construction timeline. We'll guide you from concept to completion.
                     </p>
@@ -20,10 +20,10 @@ function Contact() {
                     <img
                         src="https://cdn.jswonehomes.com/Project_Gallery_1_1_32ee7176fb/Project_Gallery_1_1_32ee7176fb.webp"
                         alt="DreamConstruct building process"
-                        className="w-full h-96 object-cover"
+                        className="w-full h-96 object-cover" data-aos="fade-up"
                     />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10" data-aos="flip-left">
 
                         <div className="bg-black-100 shadow-md rounded-lg p-6">
                             <h3 className="text-xl font-semibold text-black-800 mb-4">
