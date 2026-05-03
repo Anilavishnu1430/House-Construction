@@ -125,3 +125,8 @@ export const updateContractorAPI = async (id, reqBody, reqHeader) => {
 export const deleteAContractorAPI = async(id,reqHeader)=>{
     return await commonAPI('DELETE',`${serverURL}/api/deleteAContractor/${id}`,"",reqHeader)
 }
+
+//Add Rate - api/addRate
+export const addRateAPI = async(reqBody,reqHeader)=>{
+    return await commonAPI('POST',`${serverURL}/api/rating`,reqBody,reqHeader)
+}

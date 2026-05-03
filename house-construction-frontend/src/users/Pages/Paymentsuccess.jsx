@@ -15,7 +15,7 @@ function Paymentsuccess() {
       <p className="text-gray-700 max-w-md mb-6">
         Congratulations! Your booking is confirmed with an advance payment of ₹5000. You can customize interiors, flooring, and layout as per your choice.
       </p>
-     <Link to={"/projects"}>
+     <Link to={"/rating"}>
       <Button className="bg-[#660000] hover:bg-[#5E445C] inline-flex items-center gap-2">
         Give Feedback
       </Button>

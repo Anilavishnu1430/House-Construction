@@ -64,13 +64,13 @@ function Home() {
       <Header />
       <section className='w-ful h-screen bg-[url(https://cdn.jswonehomes.com/Home_Hero_Web_Image_0095d89aac/Home_Hero_Web_Image_0095d89aac.webp)] bg-cover bg-center bg-fixed flex items-center justify-center'>
         <div className="bg-opacity-50 p-10 rounded-lg text-center max-w-xl">
-          <h1 className="text-4xl font-bold text-black-900 mb-4">
+          <h1 className="text-4xl font-bold text-black-900 mb-4" data-aos="zoom-in">
             You Dream. We Deliver.
           </h1>
-          <p className="text-black-900 mb-6">
+          <p className="text-black-900 mb-6" data-aos="zoom-in">
             Build your dream home hassle-free with DreamConstruct.
           </p>
-          <Button onClick={() => setOpenModal(true)} className="w-full bg-[#660000] text-white font-semibold hover:bg-[#5E445C] transition-colors">
+          <Button onClick={() => setOpenModal(true)} className="w-full bg-[#660000] text-white font-semibold hover:bg-[#5E445C] transition-colors" data-aos="flip-left">
             Starts from Rs. 1599/-sft
           </Button>
         </div>
@@ -149,13 +149,13 @@ function Home() {
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#660000] mb-4">HOW IT WORKS?</h2>
-          <p className="text-[#2F222E]">
+          <h2 className="text-3xl font-bold text-[#660000] mb-4"  data-aos="zoom-in">HOW IT WORKS?</h2>
+          <p className="text-[#2F222E]" data-aos="zoom-in">
             Wehouse has been using cutting‑edge technology from the outset to address challenges faced by the regular house construction contractors.
           </p>
         </div>
         <div className="flex flex-col md:flex-row justify-center gap-6 max-w-6xl mx-auto">
-          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5">
+          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5" data-aos="flip-left">
             <div className="flex items-center gap-4 mb-4">
               <FaClipboardList className="h-14 w-14 text-[#5E445C]" />
               <span className="text-8xl font-extrabold text-gray-300 hover:text-[#660000] transition-colors duration-300">
@@ -165,7 +165,7 @@ function Home() {
             <h3 className="text-lg font-semibold text-[#000000]">Your Requirement</h3>
             <p className="text-sm text-[#5E445C]">Tell us your needs and preferences.</p>
           </Card>
-          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5">
+          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5" data-aos="flip-left">
             <div className="flex items-center gap-4 mb-4">
               <FaCalculator className="h-14 w-14 text-[#5E445C]" />
               <span className="text-8xl font-extrabold text-gray-300 hover:text-[#660000] transition-colors duration-300">
@@ -175,7 +175,7 @@ function Home() {
             <h3 className="text-lg font-semibold text-[#000000]">Cost Estimation</h3>
             <p className="text-sm text-[#5E445C]">Get a transparent cost estimate.</p>
           </Card>
-          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5">
+          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5" data-aos="flip-left">
             <div className="flex items-center gap-4 mb-4">
               <FaCalendarAlt className="h-14 w-14 text-[#5E445C]" />
               <span className="text-8xl font-extrabold text-gray-300 hover:text-[#660000] transition-colors duration-300">
@@ -185,7 +185,7 @@ function Home() {
             <h3 className="text-lg font-semibold text-[#000000]">Schedule Visit</h3>
             <p className="text-sm text-[#5E445C]">Book a convenient site visit.</p>
           </Card>
-          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5">
+          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5" data-aos="flip-left">
             <div className="flex items-center gap-4 mb-4">
               <FaHome className="h-14 w-14 text-[#5E445C]" />
               <span className="text-8xl font-extrabold text-gray-300 hover:text-[#660000] transition-colors duration-300">
@@ -195,7 +195,7 @@ function Home() {
             <h3 className="text-lg font-semibold text-[#000000]">Work Execution</h3>
             <p className="text-sm text-[#5E445C]">We execute the construction work.</p>
           </Card>
-          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5">
+          <Card className="flex flex-col items-center text-center shadow-md w-full md:w-1/5" data-aos="flip-left">
             <div className="flex items-center gap-4 mb-4">
               <FaSmileBeam className="h-14 w-14 text-[#5E445C]" />
               <span className="text-8xl font-extrabold text-gray-300 hover:text-[#660000] transition-colors duration-300">
@@ -215,28 +215,28 @@ function Home() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-center gap-6">
 
           <Card className="flex flex-col items-center text-center bg-transparent shadow-none border-none p-6">
-            <FaHardHat className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" />
-            <h3 className="text-4xl font-bold text-black">2000+</h3>
+            <FaHardHat className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" data-aos="flip-left" />
+            <h3 className="text-4xl font-bold text-black" data-aos="zoom-in">2000+</h3>
             <p className="text-xl text-[#660000] font-bold">Workforce</p>
           </Card>
           <Card className="flex flex-col items-center text-center bg-transparent shadow-none border-none p-6">
-            <FaBusinessTime className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" />
-            <h3 className="text-4xl font-bold text-black">25+</h3>
+            <FaBusinessTime className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" data-aos="flip-left" />
+            <h3 className="text-4xl font-bold text-black" data-aos="zoom-in">25+</h3>
             <p className="text-xl text-[#660000] font-bold">Experience</p>
           </Card>
           <Card className="flex flex-col items-center text-center bg-transparent shadow-none border-none p-6">
-            <FaBuilding className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" />
-            <h3 className="text-4xl font-bold text-black">5,000+</h3>
+            <FaBuilding className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" data-aos="flip-left" />
+            <h3 className="text-4xl font-bold text-black" data-aos="zoom-in">5,000+</h3>
             <p className="text-xl text-[#660000] font-bold">Houses Constructed</p>
           </Card>
           <Card className="flex flex-col items-center text-center bg-transparent shadow-none border-none p-6">
-            <FaProjectDiagram className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" />
-            <h3 className="text-4xl font-bold text-black">200+</h3>
+            <FaProjectDiagram className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" data-aos="flip-left" />
+            <h3 className="text-4xl font-bold text-black" data-aos="zoom-in">200+</h3>
             <p className="text-xl text-[#660000] font-bold">Projects</p>
           </Card>
           <Card className="flex flex-col items-center text-center bg-transparent shadow-none border-none p-6">
-            <FaUsers className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" />
-            <h3 className="text-4xl font-bold text-black">4,500+</h3>
+            <FaUsers className="h-16 w-16 text-[#5E445C] mb-3 mx-auto" data-aos="flip-left" />
+            <h3 className="text-4xl font-bold text-black" data-aos="zoom-in">4,500+</h3>
             <p className="text-xl text-[#660000] font-bold">Homes Delivered</p>
           </Card>
         </div>
@@ -244,8 +244,8 @@ function Home() {
 
       <section className="py-16">
         <div className="max-w-6xl mx-auto text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-[#660000]">Our Packages</h2>
-          <p className="text-lg text-[#5E445C] mt-2">
+          <h2 className="text-4xl font-extrabold text-[#660000]" data-aos="zoom-in">Our Packages</h2>
+          <p className="text-lg text-[#5E445C] mt-2" data-aos="zoom-in">
             Compare Standard, Premium, and Luxury options
           </p>
         </div>
@@ -532,8 +532,8 @@ function Home() {
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
           <div>
-            <h2 className="text-4xl font-extrabold text-[#330000] mb-4">
-              What our Client’s Say
+            <h2 className="text-4xl font-extrabold text-[#660000] mb-4" data-aos="zoom-in">
+              What our Client's Say
             </h2>
             <p className="text-lg text-[#5E445C] mb-6">
               We Have A Wealth Of Experience Working As Main Building Contractors On All Kinds Of Projects, Big And Small, From Home Maintenance And Improvements To Extensions, Refurbishments And New Builds.
@@ -546,7 +546,7 @@ function Home() {
             </Button>
           </div>
 
-          <Card className="shadow-lg border border-[#5E445C] bg-white">
+          <Card className="shadow-lg border border-[#5E445C] bg-white" data-aos="flip-left">
             <p className="text-[#330000] text-base mb-4">
               “I love House Construct; everyone has been great to work with. Professionalism, Punctuality, Quality, Responsiveness, Value — good quality and value for money. Thank you for the amazing service.”
             </p>

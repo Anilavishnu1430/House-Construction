@@ -8,7 +8,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 
 function ContractorHeader() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  
+
   const [contractorDetails, setContractorDetails] = React.useState({})
 
   useEffect(() => {
@@ -44,11 +44,11 @@ function ContractorHeader() {
           </div>
           <div className="flex md:order-2 items-center space-x-4">
             <button
-        onClick={toggleTheme}
-        className="px-4 py-1 rounded bg-black text-white dark:bg-white dark:text-black"
-      >
-        {theme === "light" ? "🌙 Dark" : "☀️ Light"}
-      </button>
+              onClick={toggleTheme}
+              className="px-4 py-1 rounded bg-black text-white dark:bg-white dark:text-black"
+            >
+              {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+            </button>
             <Link to="/profilesettings" className="text-black hover:text-[#660000] font-medium transition-colors">
               ⚙️
             </Link>
@@ -70,7 +70,10 @@ function ContractorHeader() {
                 />
               }
             >
-
+              <DropdownHeader>
+                <span className="block text-sm">{contractorDetails.username}</span>
+                <span className="block truncate text-sm font-medium">{contractorDetails.email}</span>
+              </DropdownHeader>
               <Link to={"/profilesettings"}><DropdownItem>Settings</DropdownItem></Link>
               <DropdownDivider />
               <Link to={"/login"}><DropdownItem>Sign out</DropdownItem></Link>

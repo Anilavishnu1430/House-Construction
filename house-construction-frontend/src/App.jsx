@@ -23,15 +23,42 @@ import AddProjects from './Admin/pages/AddProjects'
 import Paymenterror from './users/Pages/Paymenterror'
 import Paymentsuccess from './users/Pages/Paymentsuccess'
 import Rating from './users/Pages/Rating'
+import { useState ,useEffect } from 'react'
+import Preloader from './components/Preloader'
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useLocation } from "react-router-dom";
 
 function App() {
+  
+  const [isLoading,setIsLoading]=useState(false)
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setIsLoading(true)
+    },9000)
+  },[isLoading])
+
+   const location = useLocation();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+      once: true,
+    });
+  }, []);
+
+  useEffect(() => {
+    AOS.refresh();   
+  }, [location.pathname]);
+
   
 
   return (
     <>
      <Routes>
       {/* User Part */}
-      <Route path='/' element={<Home/>}/>
+      <Route path='/' element={isLoading?<Home/>:<Preloader/>}/>
         <Route path='/register' element={<Auth register/>}/>
         <Route path='/login' element={<Auth/>}/>
         <Route path='/howitwork' element={<HowItWorks/>}/>

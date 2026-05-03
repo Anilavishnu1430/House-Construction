@@ -48,11 +48,11 @@ function AdminHeader() {
           </div>
           <div className="flex md:order-2 items-center space-x-4">
             <button
-        onClick={toggleTheme}
-        className="px-4 py-1 rounded bg-black text-white dark:bg-white dark:text-black"
-      >
-        {theme === "light" ? "🌙 Dark" : "☀️ Light"}
-      </button>
+              onClick={toggleTheme}
+              className="px-4 py-1 rounded bg-black text-white dark:bg-white dark:text-black"
+            >
+              {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+            </button>
             <Link to="/settings" className="text-black hover:text-[#660000] font-medium transition-colors">
               ⚙️
             </Link>
@@ -74,7 +74,10 @@ function AdminHeader() {
                 />
               }
             >
-
+              <DropdownHeader>
+                <span className="block text-sm">{adminDetails.username}</span>
+                <span className="block truncate text-sm font-medium">{adminDetails.email}</span>
+              </DropdownHeader>
               <Link to={"/settings"}><DropdownItem>Settings</DropdownItem></Link>
               <DropdownDivider />
               <Link to={"/login"}><DropdownItem>Sign out</DropdownItem></Link>
