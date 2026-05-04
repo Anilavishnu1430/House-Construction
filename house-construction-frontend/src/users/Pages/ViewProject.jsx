@@ -12,58 +12,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 
 function ViewProject() {
-    // const [booking, setBooking] = useState({
-    //     type: "",
-    //     date: "",
-    //     stage: "",
-    //     unit: "",
-    //     area: "",
-    //     description: "",
-    //     fullname: "",
-    //     phone: "",
-    //     email: ""
-    // });
-
-    // const handleBooking = async () => {
-
-    //     const { type, date, stage, unit, area, description, fullname, phone, email } = booking;
-    //     console.log(booking);
-
-    //     if (type && date && stage && unit && area && description && fullname && phone && email) {
-    //         try {
-    //             let token = sessionStorage.getItem("token")
-    //             const reqHeader = {
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //             const reqBody = { type, date, stage, unit, area, description, fullname, phone, email }
-    //             const response = await addBookingAPI(reqBody, reqHeader)
-    //             console.log(response);
-    //             if (response.status === 200) {
-    //                 alert(response.data.message)
-    //                 setBooking({
-    //                     type: "",
-    //                     date: "",
-    //                     stage: "",
-    //                     unit: "",
-    //                     area: "",
-    //                     description: "",
-    //                     fullname: "",
-    //                     phone: "",
-    //                     email: ""
-    //                 })
-    //             }
-    //             setOpenModal(false)
-    //         }
-    //         catch (err) {
-    //             console.log(err);
-    //             alert("Error while add quote")
-    //         }
-    //     }
-    //     else {
-    //         alert("Please fill the form")
-    //     }
-    // }
-
+    
     const [token, setToken] = React.useState("")
     console.log(token);
     const { id } = useParams()
